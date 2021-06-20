@@ -19,8 +19,8 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  return new Date(value);
 }
 
 /**
@@ -34,8 +34,8 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return new Date(value);
 }
 
 
@@ -53,8 +53,15 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  let result = false;
+  const getDate = new Date(date);
+  const getYear = getDate.getFullYear();
+  if (getYear % 4 !== 0) result = false;
+  else if (getYear % 100 !== 0) result = true;
+  else if (getYear % 400 !== 0) result = false;
+  else result = true;
+  return result;
 }
 
 
@@ -73,8 +80,14 @@ function isLeapYear(/* date */) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const hours = `${end.getHours() - start.getHours()}`.padStart(2, 0);
+  const minutes = `${end.getMinutes() - start.getMinutes()}`.padStart(2, 0);
+  const seconds = `${end.getSeconds() - start.getSeconds()}`.padStart(2, 0);
+  const miliseconds = `${end.getMilliseconds() - start.getMilliseconds()}`.padStart(3, 0);
+  return `${hours}:${minutes}:${seconds}.${miliseconds}`;
 }
 
 
@@ -96,6 +109,11 @@ function timeSpanToString(/* startDate, endDate */) {
  */
 function angleBetweenClockHands(/* date */) {
   throw new Error('Not implemented');
+  // const getDate = new Date(date);
+  // const hours = getDate.getHours();
+  // const minutes = getDate.getMinutes();
+  // const result = (0.5 * (Math.PI / 180)) * ((60 * hours) - (11 * minutes));
+  // return result;
 }
 
 
