@@ -27,8 +27,13 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let result = num;
+  if (num % 5 === 0 && num % 3 === 0) result = 'FizzBuzz';
+  else if (num % 3 === 0) result = 'Fizz';
+  else if (num % 5 === 0) result = 'Buzz';
+  else result = num;
+  return result;
 }
 
 
@@ -43,8 +48,15 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let answer = 1;
+  if (n === 0 || n === 1) answer = 1;
+  else {
+    for (let i = n; i >= 1; i -= 1) {
+      answer *= i;
+    }
+  }
+  return answer;
 }
 
 
@@ -60,8 +72,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let sum = 0;
+  for (let i = n1; i <= n2; i += 1) {
+    sum += i;
+  }
+  return sum;
 }
 
 
@@ -80,8 +96,12 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  let result = false;
+  if (a <= 0 || b <= 0 || c <= 0) result = false;
+  if (a + b > c && a + c > b && c + b > a) result = true;
+  else result = false;
+  return result;
 }
 
 
@@ -117,8 +137,9 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  if (rect2.top < rect1.top + rect1.height && rect2.left < rect1.left + rect1.width) return true;
+  return false;
 }
 
 
@@ -148,8 +169,9 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  return circle.radius > Math
+    .sqrt((circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2);
 }
 
 
@@ -164,8 +186,17 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    let sum = 0;
+    for (let j = 0; j < str.length; j += 1) {
+      if (str.charAt(i) === str.charAt(j)) {
+        sum += 1;
+      }
+    }
+    if (sum === 1) return str.charAt(i);
+  }
+  return null;
 }
 
 
